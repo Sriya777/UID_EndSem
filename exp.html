@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicinal Plants</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #BCECAC; /* Forest Green background color */
+        }
+
+        header {
+            background-color:#355E3B ; /* Forest Green background color */
+            color: white;
+            padding: 20px auto; /* Adjust padding based on viewport height and width */
+            text-align: center;
+            box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+            font-family: 'Frijole', cursive;
+        }
+
+        h1 {
+            font-size: 4vw; /* Adjust font size based on viewport width */
+        }
+
+        .shopping-cart-icon {
+            font-size: 24px;
+            color: #fff; /* Adjust color as needed */
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .box {
+            border-radius: 25px;
+            border: 1px solid black;
+            width: 300px;
+            height: 300px;
+            margin: 40px;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+        }
+
+        div.container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 0 0 25px 25px;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .offer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff5733;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .price {
+            font-size: 24px;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            font-size: 18px;
+            color: #888;
+        }
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 10px;
+            position: relative;
+        }
+
+        /* Close Button */
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 5px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Medicinal Plants</h1>
+        <!-- Shopping cart icon -->
+        <i class="material-icons shopping-cart-icon" id="cart-icon">shopping_cart</i>
+    </header>
+    <table>
+        <tr>
+            <td>
+                <div class="box" >
+                 <a href="Lily.html">
+                    <span class="offer">15% OFF</span>
+                    <img src="https://caribbeangardenseed.com/cdn/shop/products/bulbs-roots-rhizomes-gloriosa-lily-lily-bulb-crimson-red-yellow-perennial-vine-3_745b3b19-3f9d-4de1-8d4e-1e91ca3dc64d.jpg?v=1637182025" alt="">
+                    <div class="container">
+                        <p class="price">Rs <span class="new-price">85</span></p>
+                        <p class="old-price">Rs 100</p>
+                        <p> <i>Gloriosa superba</i> (Flame Lily)</p>
+                    </div></a></div>
+                    </td>
+                   <td>
+    <div class="box" >
+         <a href="shankapushpi.html">
+        <span class="offer">15% OFF</span>
+        <img src="https://5.imimg.com/data5/XA/YI/MY-30522424/shankhpushpi-500x500.jpg" alt="shankhpushpi">
+        <div class="container">
+            <p class="price">Rs <span class="new-price">85</span></p>
+            <p class="old-price">Rs 100</p>
+            <p><i>Convolvulus pluricaulis</i>(Shankhpushpi)</p>
+        </div></a></div>
+                    </td>
+    
+<td>
+    <div class="box" >
+    <a href="Mandukaparni.html">
+        <span class="offer">15% OFF</span>
+        <img src="https://3.imimg.com/data3/QR/LC/MY-9261044/wp-content-uploads-2014-06-mandukaparni-ayurveda.jpg" alt="mandukaparni">
+        <div class="container">
+            <p class="price">Rs <span class="new-price">85</span></p>
+            <p class="old-price">Rs 100</p>
+            <p><i>Centella asiatica</i> (Mandukaparni )</p>
+        </div></a></div>
+                    </td>
+ 
+
+</tr>
+<tr>
+<td>
+    <div class="box" >
+    <a href="Brahmi.html">
+        <span class="offer">15% OFF</span>
+        <img src="https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/bacopa-monnieri-1296x728-feature.jpg?w=1155&h=1528" alt="brahmi">
+        <div class="container">
+            <p class="price">Rs <span class="new-price">85</span></p>
+            <p class="old-price">Rs 100</p>
+            <p> <i>Bacopa monnieri(Brahmi)</i></p>
+        </div></a></div>
+                    </td>
+    
+<td>
+    <div class="box" >
+   <a href="Jatamasi.html">
+    <span class="offer">15% OFF</span>
+        <img src="https://efloraofindia.com/wp-content/uploads/2020/10/Herb2%20I2%20IMG_4907.jpg" alt="jatamansi">
+        <div class="container">
+            <p class="price">Rs <span class="new-price">85</span></p>
+            <p class="old-price">Rs 100</p>
+            <p><i>Nardostachys jatamansi</i> (Jatamansi)</p>
+        </div></a></div>
+                    </td>
+   
+
+<td>
+    <div class="box" >
+        <a href="Gurmar.html">
+        <span class="offer">15% OFF</span>
+        <img src="https://www.joyfulbelly.com/catalog/images/120-Gymnema-GurmarFLOW.jpg" alt="gurmar">
+        <div class="container">
+            <p class="price">Rs <span class="new-price">85</span></p>
+            <p class="old-price">Rs 100</p>
+            <p><i>Gymnema sylvestre</i> (Gurmar)</p>
+        </div></a></div>
+                    </td>
+   </tr>
+
+
+       
+    </table>
+
+   
+    
+   
+</body>
+</html>

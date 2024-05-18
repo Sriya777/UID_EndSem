@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medopetal Feedback</title>
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  body {
+    font-family: 'Carter One', sans-serif;
+    background-color: #f3e5f5;
+    margin: 0;
+    padding: 0;
+    color: #6a1b9a; /* Dark Purple */
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeInDown 1s ease;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+    border: 2px solid #6a1b9a; /* Dark Purple */
+    background-color: #6a1b9a; /* Dark Purple */
+    color: #fff; /* White */
+    padding: 10px;
+    border-radius: 8px;
+    animation: fadeInUp 1s ease;
+  }
+
+  #header-image {
+    border-radius: 50%; /* Circular */
+    width: 150px; /* Adjust size as needed */
+    height: 150px; /* Adjust size as needed */
+    margin-right: 20px;
+    float: left;
+  }
+
+  form {
+    max-width: 600px;
+    margin: 0 auto; /* Removed the top margin to align the form with the header */
+    padding: 20px;
+    background-color: #e1bee7;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    animation: slideInUp 1s ease;
+  }
+
+  form:hover {
+    transform: translateY(-5px);
+  }
+
+  table {
+    width: 100%;
+  }
+
+  td {
+    padding: 10px;
+    vertical-align: top;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .icon {
+    margin-right: 10px;
+    font-size: 24px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  textarea,
+  select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #fce4ec; /* Light Pink */
+    color: #6a1b9a; /* Dark Purple */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  textarea:focus,
+  select:focus {
+    border-color: #ad1457; /* Dark Pink */
+  }
+
+  input[type="radio"] {
+    margin-right: 5px;
+    transform: scale(1.5);
+  }
+
+  input[type="checkbox"] {
+    margin-right: 5px;
+    transform: scale(1.5);
+    background-color: #e1bee7; /* Lavender */
+  }
+
+  .radio-inline label {
+    display: inline-block;
+    margin-right: 20px;
+    color: #333;
+  }
+
+  button {
+    padding: 16px 24px;
+    background-color: #8e24aa;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto 0;
+    animation: pulse 1s infinite alternate;
+  }
+
+  button:hover {
+    background-color: #6a1b9a;
+  }
+
+  /* Added styling for the image container */
+  .image-container {
+    position: relative;
+    width: 50%;
+    margin: auto;
+    overflow: hidden;
+    border: 2px solid #800080; /* Purple */
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .quote-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9); /* Transparent white */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    animation: fadeIn 1s ease forwards;
+    opacity: 0;
+  }
+
+  .quote-overlay p {
+    font-size: 20px;
+    color: #333;
+    margin: 0;
+  }
+
+  #comments {
+    font-size: 18px; /* Increased font size for textarea */
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>Feedback Form</h1>
+
+<header>
+  <img id="header-image" src="https://www.evertricks.com/wp-content/uploads/2019/10/0-1.jpg" alt="Circular Header Image">
+  <h2>We'd Love to Hear Your Feedback!</h2>
+</header>
+
+<form id="feedbackForm" action="#" method="post">
+  <table>
+    <tr>
+      <td>
+        <label for="name"><i class="fas fa-user icon"></i> Name:</label>
+      </td>
+      <td>
+        <input type="text" id="name" name="name" required autocomplete="name">
+        <span id="nameError" style="color:red;"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="email"><i class="fas fa-envelope icon"></i> Email:</label>
+      </td>
+      <td>
+        <input type="email" id="email" name="email" required autocomplete="email">
+        <span id="emailError" style="color:red;"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="age"><i class="fas fa-birthday-cake icon"></i> Age:</label>
+      </td>
+      <td>
+        <input type="number" id="age" name="age" min="18" max="100" required>
+        <span id="ageError" style="color:red;"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="breed"><i class="fa fa-cart-plus"></i> Favorite Plant Category:</label>
+      </td>
+      <td>
+        <input list="breeds" id="breed" name="breed" required>
+        <datalist id="breeds">
+          <option value="medicinal plants">
+          <option value="edible plants">
+          <option value="decorative indoor plants">
+          <option value="flowering plants">
+          <option value="seasonal plants">
+          <option value="air purifying plants">
+        </datalist>
+        <span id="breedError" style="color:red;"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="owner"><i class="fa fa-thumbs-o-up"></i> Are you a plant enthusiast?</label>
+      </td>
+      <td class="radio-inline">
+        <label for="ownerYes">
+          <input type="radio" id="ownerYes" name="owner" value="Yes" required> Yes
+        </label>
+        <label for="ownerNo">
+          <input type="radio" id="ownerNo" name="owner" value="No"> No
+        </label>
+        <span id="ownerError" style="color:red;"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="interest"><i class="fa fa-smile-o"></i> How was your experience with us?</label>
+      </td>
+      <td>
+        <input type="checkbox" id="interestExcellent" name="interest[]" value="excellent">
+        <label for="interestExcellent">Excellent</label>
+        <input type="checkbox" id="interestNeutral" name="interest[]" value="neutral">
+        <label for="interestNeutral">Neutral</label>
+        <input type="checkbox" id="interestPoor" name="interest[]" value="poor">
+        <label for="interestPoor">Poor</label>
+        <span id="interestError" style="color:red;"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="comments"><i class="fas fa-comment icon"></i> Comments:</label>
+      </td>
+      <td>
+        <textarea id="comments" name="comments" rows="4" cols="50" maxlength="500" required></textarea>
+        <span id="commentsError" style="color:red;"></span>
+      </td>
+    </tr>
+  </table>
+  
+  <button type="submit">Submit Feedback</button>
+</form>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<script>
+  document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    if (validateForm()) {
+      alert('Thank you for your feedback!');
+      
+    }
+  });
+
+  function validateForm() {
+    let isValid = true;
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const age = document.getElementById('age').value;
+    const breed = document.getElementById('breed').value.trim();
+    const owner = document.querySelector('input[name="owner"]:checked');
+    const interests = document.querySelectorAll('input[name="interest[]"]:checked');
+    const comments = document.getElementById('comments').value.trim();
+
+    document.getElementById('nameError').innerText = '';
+    document.getElementById('emailError').innerText = '';
+    document.getElementById('ageError').innerText = '';
+    document.getElementById('breedError').innerText = '';
+    document.getElementById('ownerError').innerText = '';
+    document.getElementById('interestError').innerText = '';
+    document.getElementById('commentsError').innerText = '';
+
+    if (!name) {
+      isValid = false;
+      document.getElementById('nameError').innerText = 'Please enter your name.';
+    }
+
+    if (!email || !validateEmail(email)) {
+      isValid = false;
+      document.getElementById('emailError').innerText = 'Please enter a valid email address.';
+    }
+
+    if (!age || age < 18 || age > 100) {
+      isValid = false;
+      document.getElementById('ageError').innerText = 'Please enter a valid age between 18 and 100.';
+    }
+
+    if (!breed) {
+      isValid = false;
+      document.getElementById('breedError').innerText = 'Please enter your favorite plant category.';
+    }
+
+    if (!owner) {
+      isValid = false;
+      document.getElementById('ownerError').innerText = 'Please select if you are a plant enthusiast.';
+    }
+
+    if (interests.length === 0) {
+      isValid = false;
+      document.getElementById('interestError').innerText = 'Please select at least one option.';
+    }
+
+    if (!comments) {
+      isValid = false;
+      document.getElementById('commentsError').innerText = 'Please enter your comments.';
+    }
+
+    return isValid;
+  }
+
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+</script>
+
+</body>
+</html>
+

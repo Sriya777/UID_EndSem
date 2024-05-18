@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medopetal Paradise</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frijole&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+   /* Set the size of the div element that contains the map */
+      #map {
+        height: 60vh;  /* Adjust height */
+        width: 100%;  /* The width is 100% */
+        margin-bottom: 10px;
+      }
+      
+      /* Style for the date/time display */
+      #datetime {
+        text-align: center;
+        font-size: 1.2em;
+        padding: 10px;
+        background: #f8f9fa;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      /* Style for the popups */
+      .leaflet-popup-content {
+        text-align: center;
+      }
+      
+      .leaflet-popup-content b {
+        font-size: 1.1em;
+      }
+
+      /* Responsive styles */
+      @media only screen and (max-width: 768px) {
+        #map {
+          height: 50vh;
+        }
+      }
+
+      @media only screen and (max-width: 480px) {
+        #map {
+          height: 40vh;
+        }
+      }
+      
+      /* Style for catchy paragraph */
+      #catchy-paragraph {
+        text-align: center;
+        font-size: 1.2em;
+        margin: 20px auto;
+        max-width: 80%;
+      }
+    /* Reset default browser styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Charm', cursive;
+      background-color: #E6F7FF; /* Light blue */
+      overflow-x: hidden; /* Hide horizontal scrollbar */
+      font-size: 24px; /* Increase the font size */
+    }
+
+    /* Header styles */
+    header {
+      background-image: url('https://w0.peakpx.com/wallpaper/510/704/HD-wallpaper-blue-orchids-flower-nature-orchids-blue.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2); /* Increased shadow effect*/
+      font-family: 'Frijole', cursive; /* Apply Frijole font */
+    }
+
+    
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #FFD700; /* Gold */
+    }
+    
+    .social-icons {
+      margin-top: 20px;
+      text-align: center;
+      font-size:35px;
+    }
+
+    .social-icon {
+      color: #87CEEB; /* Sky blue */
+      transition: color 0.3s ease; /* Added color transition */
+    }
+
+    .social-icon:hover {
+      color: white; /* White on hover */
+    }
+
+    /* Main content styles */
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative; /* Ensure relative positioning for children */
+      z-index: 1; /* Ensure content is above the gallery */
+      margin-left: 200px; /* Updated */
+    }
+    
+    @keyframes shrinkExpand {
+      0% {
+        font-size: 36px; /* Initial font size */
+      }
+      50% {
+        font-size: 30px; /* Shrink font size */
+      }
+      100% {
+        font-size: 36px; /* Expand font size back to original */
+      }
+    }
+    
+    section {
+      margin-bottom: 40px;
+      background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+    }
+
+    section h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #0F4C81; /* Dark blue */
+      transition: color 0.3s ease;
+    }
+
+    section:hover h2 {
+      color: #FFA500; /* Orange */
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+      transition: color 0.3s ease;
+    }
+
+    ul {
+      margin-bottom: 15px;
+    }
+
+    ul li {
+      transition: color 0.3s ease;
+    }
+
+    ul li:hover {
+      color: #0F4C81; /* Dark blue */
+    }
+
+    /* Footer styles */
+    footer {
+      background-color:  #0f4c81;/* Semi-transparent dark blue */
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 18px;
+      margin-top: 20px;
+      box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease forwards;
+      font-family: 'Frijole', cursive;
+      
+    }
+
+    footer p {
+      margin-bottom: 10px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Button styles */
+    .btn {
+      background-color: #0F4C81;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .btn:hover {
+      background-color: #FFA500; /* Orange */
+    }
+
+    /* Image styles */
+    .contact-images {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .contact-images img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-images img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Gallery styles */
+    .gallery {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 200px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 999; /* Ensure gallery is above other content */
+    }
+
+    .gallery h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #0f4c81; /* Dark blue */
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .gallery p {
+      line-height: 1.6;
+    }
+    
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Medopetal Paradise</h1>
+    <nav>
+      <ul>
+        <li><a href="#mission">Our Mission</a></li>
+        <li><a href="#products">What We Offer</a></li>
+        <li><a href="#quality">Quality Commitment</a></li>
+        <li><a href="#values">Our Values</a></li>
+        <li><a href="#community">Community Engagement</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#location">Visit Us</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="mission">
+      <h2>Our Mission</h2>
+      <p>At Medopetal Paradise, our mission is to provide exceptional products and services that promote well-being, elegance, and harmony. We aim to exceed our customers' expectations by delivering premium quality medical products, decorative items, and orchid plants.</p>
+    </section>
+    <section id="products">
+      <h2>What We Offer</h2>
+      <p>Discover our curated selection of products:</p>
+      <ul>
+        <li><strong>Medical Products:</strong> From essential medications to health supplements, we offer a range of products to support your wellness journey.</li>
+        <li><strong>Decorative Items:</strong> Add elegance to your space with our unique decorative items, carefully selected to enhance any environment.</li>
+        <li><strong>Orchid Plants:</strong> Immerse yourself in the beauty of nature with our exquisite orchid plants, perfect for adding a touch of tranquility to your surroundings.</li>
+      </ul>
+    </section>
+    <section id="quality">
+      <h2>Quality Commitment</h2>
+      <p>Quality is our top priority at Medopetal Paradise. We meticulously select our products and partners to ensure the highest standards of excellence. From the purity of our medical supplies to the craftsmanship of our decorative items, we guarantee quality in every aspect.</p>
+    </section>
+    <section id="values">
+      <h2>Our Values</h2>
+      <p>Our core values shape our business practices:</p>
+      <ul>
+        <li><strong>Integrity:</strong> We conduct our business with honesty, transparency, and integrity.</li>
+        <li><strong>Customer Satisfaction:</strong> We prioritize customer satisfaction and strive to exceed expectations at every opportunity.</li>
+        <li><strong>Sustainability:</strong> We are committed to environmental sustainability and incorporate eco-friendly practices into our operations.</li>
+      </ul>
+    </section>
+    <section id="community">
+      <h2>Community Engagement</h2>
+      <p>At Medopetal Paradise, we believe in giving back to the community. We actively participate in charitable initiatives and support local causes to make a positive impact in our community.</p>
+    </section>
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Have questions or feedback? We're here to help. Contact us via phone, email, or visit our store for personalized assistance.</p>
+      <div class="contact-images">
+        <figure>
+          <img src="C:\Users\Sriya Nistala\MedoPetalParadise\sriya.jpeg" alt="Sriya">
+          <figcaption> &nbsp &nbsp &nbsp &nbsp  &nbsp Sriya Nistala</figcaption>
+        </figure>
+        <figure>
+           <img src="C:\Users\Sriya Nistala\MedoPetalParadise\samhitha.jpeg" alt="Samhitha">
+          <figcaption> Gorantla Samhitha</figcaption>
+        </figure>
+        <figure>
+          <img src="C:\Users\Sriya Nistala\MedoPetalParadise\shreya.jpeg" alt="Shreya">
+          <figcaption> &nbsp &nbsp &nbsp  Shreya Srivastava</figcaption>
+        </figure>
+      </div>
+      <address>
+        <p>Contact us at:
+          <a href="mailto:bl.en.u4aie23048@bl.en.students.amrita.edu">Gorantla Samhitha</a>,
+          <a href="mailto:bl.en.u4aie23034@bl.en.students.amrita.edu">Sriya Nistala</a>,
+          <a href="mailto:bl.en.u4aie23032@bl.en.students.amrita.edu">Shreya Srivastava</a><br>
+          Amrita Viswa Vidyapeetham<br>
+          Bengaluru, Karnataka - 560001<br>
+          India
+        </p>
+      </address>
+     
+      <button class="btn">Contact Now</button>
+    </section>
+    <section id="location">
+      <h2>Visit us</h2>
+      <div id="datetime">Loading date and time...</div>
+    <div id="map"></div>
+    <div id="catchy-paragraph">
+      <p>Transform your space into a botanical wonderland with the exquisite selection of flowers and plants from MedoPetal Paradise! From vibrant blooms that brighten up any room to lush greenery that adds a touch of serenity to your surroundings, our botanical treasures are sure to elevate your home or office decor. Whether you're a seasoned plant enthusiast or just starting your green journey, MedoPetal Paradise offers a diverse range of flora to suit every taste and style. Discover the magic of nature and bring home a piece of paradise today!</p>
+    </div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      function initMap() {
+        console.log("Initializing map...");
+
+        // Coordinates for MedoPetal Paradise
+        const medopetalCoords = [12.8462, 77.6593];
+
+        // Create the map centered at MedoPetal Paradise
+        const map = L.map('map').setView(medopetalCoords, 15);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Custom marker for MedoPetal Paradise
+        const medopetalMarker = L.marker(medopetalCoords, {
+          title: "MedoPetal Paradise"
+        }).addTo(map);
+        medopetalMarker.bindPopup("<b>MedoPetal Paradise</b>").openPopup();
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const pos = [position.coords.latitude, position.coords.longitude];
+
+              console.log("Current position:", pos);
+
+              map.setView(pos, 15);
+
+              L.marker(pos).addTo(map)
+                .bindPopup('You are here')
+                .openPopup();
+            },
+            (error) => {
+              handleLocationError(true, map.getCenter(), error);
+            }
+          );
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, pos, error) {
+        console.error(
+          browserHasGeolocation
+            ? "Error: The Geolocation service failed."
+            : "Error: Your browser doesn't support geolocation.",
+          error
+        );
+        alert(
+          browserHasGeolocation
+            ? "Error: The Geolocation service failed."
+            : "Error: Your browser doesn't support geolocation."
+        );
+      }
+
+      function updateDateTime() {
+        const now = new Date();
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const day = days[now.getDay()];
+        const date = now.toLocaleDateString();
+        const time = now.toLocaleTimeString();
+
+        document.getElementById('datetime').innerHTML = `Today is ${day}, ${date}, ${time}`;
+      }
+
+      // Update date and time every second
+      setInterval(updateDateTime, 1000);
+
+      // Initial call to display date and time immediately
+      updateDateTime();
+
+      // Initialize the map
+      initMap();
+    </script>
+    </section>
+  </main>
+  <footer>
+  <div class="social-icons">
+    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+  </div>
+    <p>Thank you for choosing Medopetal Paradise. Let us help you discover the perfect products to enhance your life.</p>
+    <p>Shreya Srivastava, Gorantla Samhitha, Sriya Nistala,<br>Founders of Medopetal Paradise</p>
+  </footer>
+  <div class="gallery" id="gallery">
+    <h2>Gallery</h2>
+    <img src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1660073901-best-indoor-plants-zz-plant-1660073875.png?crop=1.00xw:0.802xh;0,0.168xh&resize=980:*" alt="Gallery Image 1">
+    <img src="https://5.imimg.com/data5/SELLER/Default/2021/6/VH/ZY/CO/12253376/indoor-plants.JPG" alt="Gallery Image 2">
+    <img src="https://ak1.ostkcdn.com/images/products/is/images/direct/00ac53065edbf82526857b3859b1aa6579a07cdb/Creative-Half-Moon-Shaped-Plant-Stand-Indoor.jpg" alt="Gallery Image 3">
+    <img src="https://cms.interiorcompany.com/wp-content/uploads/2024/01/use-a-home-decor-plant-stand.jpg" alt="Gallery Image 4">
+    <img src="https://m.media-amazon.com/images/I/816cOPJBBCL._AC_UF350,350_QL80_.jpg" alt="Gallery Image 5">
+    <img src="https://i.pinimg.com/736x/73/aa/32/73aa329dd21fb3adb64c08f5d85cf384.jpg" alt="Gallery Image 6">
+    <img src="https://www.vermontnaturecreations.com/wp-content/uploads/2014/09/LANTERN_PR_72_SIZED.jpg" alt="Gallery Image 7">
+    <img src="https://i.pinimg.com/736x/33/89/5c/33895ca85b33ef5786a8d8c73eb1297c.jpg" alt="Gallery Image 8">
+    <img src="https://cityfloralgreenhouse.com/wp-content/uploads/2020/12/vadim-kaipov-8ZELrodSvTc-unsplash.jpg" alt="Gallery Image 9">
+    <p>Explore our achievements through our gallery.</p>
+  </div>
+  <script>
+    const gallery = document.getElementById('gallery');
+    const images = gallery.getElementsByTagName('img');
+    let currentIndex = 0;
+
+    function showNextImage() {
+      images[currentIndex].style.display = 'none';
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].style.display = 'block';
+    }
+
+    // Initially hide all images except the first one
+    for (let i = 1; i < images.length; i++) {
+      images[i].style.display = 'none';
+    }
+
+    setInterval(showNextImage, 3000); // Change image every 3 seconds
+  </script>
+</body>
+</html>

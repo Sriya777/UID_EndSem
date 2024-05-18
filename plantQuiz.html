@@ -1,0 +1,705 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plants Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <link href='https://fonts.googleapis.com/css?family=Agbalumo|Iceberg&display=swap' rel='stylesheet'>
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://miro.medium.com/v2/resize:fit:679/1*TJXwjRDZ4C3QoGVeifBrtw.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: 'Iceberg';
+            
+        }
+
+        /* Global CSS styles */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 999;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            animation: zoomInOut 2s ease-in-out infinite alternate;
+        }
+
+        /* Your existing styles here */
+        @keyframes zoomInOut {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.2);
+            }
+        }
+
+        .container {
+            max-width: 500px;
+            max-height: 650px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fade-in 0.8s ease-out;
+        }
+
+        #question {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #333;
+            font-family: 'Agbalumo';
+
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            border: none;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: none;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .dog-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+            border: 5px solid black;
+           font-family: 'Iceberg';
+            /* Thick black border */
+        }
+
+        .dog-name {
+            font-size: 18px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: zoomIn 0.3s;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            z-index: 999;
+            font-size:32px;
+            
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-info {
+            flex: 1;
+            max-width: 300px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-info h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .footer-info p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .social-icons ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-icons ul li {
+            margin-right: 10px;
+        }
+
+        .social-icons ul li:last-child {
+            margin-right: 0;
+        }
+
+        .social-icons ul li a {
+            display: block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            background-color: #333;
+            color: white;
+            border-radius: 50%;
+            font-size: 24px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .social-icons ul li a:hover {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        .social-icons ul li a:hover i {
+            color: inherit;
+        }
+        
+        .footer-content {
+    display: flex;
+    justify-content: space-between; /* This property might be causing the text to wrap */
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-info {
+    flex: 1;
+    max-width: 300px; /* Limit the maximum width of the content */
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+
+        .footer-bottom {
+            margin-top: 20px;
+        }
+
+        .footer-bottom p {
+            font-size: 20px;
+            margin: 0;
+        }
+        
+        #progress-bar-container {
+    width: 100%;
+    height: 20px;
+    background-color: grey;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+    <h1>Plants Quiz</h1>
+    <img src="https://www.bootgum.com/wp-content/uploads/2018/07/ClockTicking550Watermarked.gif" alt="Clock ticking" style="width: 70px; height: 70px;">
+</header>
+
+    
+    <div id="progress-bar-container">
+    <div id="progress-bar"></div>
+</div>
+
+    
+    
+
+    <div class="container">
+        <div id="timer">2:00</div>
+        <div id="progress">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="question"></div>
+        <form id="choices"></form>
+        <p class="hint" id="hint">Need a hint?</p>
+        <button id="previousBtn" style="display:none;">Previous</button>
+        <button id="submitBtn">Submit Answer</button>
+        <button id="skipBtn">Skip Question</button>
+        <button id="pauseBtn">Pause Timer</button>
+        <button id="nextBtn" style="display:none;">Next</button>
+        <p id="score"></p>
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+        <div id="question"></div>
+        <table id="options"></table>
+    </div>
+    
+    
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modal-text"></p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h1> Explore Popular Plant Variants.</h1>
+                <p>&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp </p>
+            </div>
+            <div class="social-icons">
+                <ul>
+                    <li><a href="#" title="Facebook"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href="#" title="Pinterest"><i class="fab fa-pinterest"></i></a></li>
+                    <li><a href="#" title="YouTube"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Plants Quiz. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <audio id="correctSound" src="C:\MPP\mixkit-correct-answer-reward-952.wav" preload="auto"></audio>
+    <audio id="wrongSound" src="C:\MPP\mixkit-wrong-answer-fail-notification-946.wav" preload="auto"></audio>
+    
+    
+
+    
+     <script>
+        // JavaScript code goes here
+        // Function to ask user's name before starting the quiz
+        function askUserName() {
+            const userName = prompt("Please enter your name:");
+            if (userName) {
+                alert(`Welcome, ${userName}! Let's start the quiz.`);
+            } else {
+                alert("Please enter your name to start the quiz.");
+                askUserName();
+            }
+        }
+        
+        // Call askUserName when the page loads
+        window.onload = askUserName;
+
+        // Define your questions array here
+        // Your existing questions array here
+
+        // Remaining JavaScript code for the quiz
+        // Your existing JavaScript code here
+    </script>
+    <script>
+        // JavaScript code goes here
+        document.addEventListener("DOMContentLoaded", function () {
+            const dogImages = document.querySelectorAll(".dog-image");
+
+            // Add event listeners to each image
+            dogImages.forEach(function (image) {
+                image.addEventListener("mouseenter", function () {
+                    // Scale up the image on mouse enter
+                    image.style.transform = "scale(1.2)";
+                    image.style.transition = "transform 0.3s ease";
+                });
+
+                image.addEventListener("mouseleave", function () {
+                    // Scale down the image on mouse leave
+                    image.style.transform = "scale(1)";
+                });
+            });
+        });
+    </script>
+     <script>
+        // Define your questions array here
+        const questions = [{
+                question: "Which medicinal plant, often referred to as the 'Queen of Herbs,' is known for its numerous health benefits, including boosting immunity and reducing stress?",
+                choices: ["Neem", "Tulsi (Holy Basil)", "Aloe Vera", "Ashwagandha"],
+                correctAnswer: "Tulsi (Holy Basil)",
+                images: ["https://static.sadhguru.org/d/46272/1633188577-1633188576599.jpg", "https://www.greendna.in/cdn/shop/products/1296x728_Holy_Basil_1155x.jpg?v=1591462900", "https://naturalpoland.com/wp-content/uploads/aloe-vera-in-africa.jpg", "https://files.nccih.nih.gov/ashwagandha-credit-oregon-s-wild-harvest-a-square-medium-res.jpg"]
+            },
+             {
+                question: "Which flowering plant, known for its vibrant orange and yellow flowers, is commonly used in religious and cultural ceremonies across India?",
+                choices: [" Rose", "Jasmine", "Marigold", "Hibiscus"],
+                correctAnswer: "Marigold",
+               images: ["https://rukminim2.flixcart.com/image/850/1000/kflftzk0/plant-sapling/c/c/m/red-rose-plant-rosa-multiflora-perennial-fragrant-1-m-original-imafwfy47hrnkcku.jpeg?q=90&crop=false", "https://cdn.makemygarden.com/uploads/2021/08/101.jpg", "https://samsgardenstore.com/wp-content/uploads/2021/07/Marigold-Orange-Desi-Seeds-Banthipuvvu-.webp", "https://cdn.mos.cms.futurecdn.net/qcaFgEgbhTzdJZpN8f8fHY-1200-80.jpg"]
+            },
+            
+           { question: "Which plant, known for its sharp, succulent leaves, is widely used in skincare products and traditional medicine for its soothing and healing properties?",
+                choices: ["Neem", "Aloe Vera", "Tulsi (Holy Basil)", "Ashwagandha"],
+                correctAnswer: "Aloe Vera",
+                images: ["https://rukminim1.flixcart.com/image/850/1000/k9stjm80/plant-sapling/m/q/m/live-herbal-plant-neem-melia-azadirachta-medicinal-plants-for-original-imafrgzuusu8yqrc.jpeg?q=90", "https://www.kew.org/sites/default/files/styles/original/public/2020-04/Aloe_Vera.jpg.webp?itok=nuAtuuf1", "https://feeds.abplive.com/onecms/images/uploaded-images/2024/01/12/b97003d8f313cea8f167caf30215fe3a1705062342503937_original.jpg", "https://dukaan.b-cdn.net/700x700/webp/upload_file_service/b60ade8d-084a-413d-a6ed-f18f76571a6f/herbal-medicinal-plant-onlineplantscart-in.png"]
+            },
+             {
+                question: "Which tree, known for its fragrant flowers that bloom at night, is also used in traditional medicine for its antipyretic and anti-inflammatory properties?",
+                choices: ["Banyan", "Peepal", "Parijat", "Neem"],
+                correctAnswer: "Parijat",
+                images: ["https://m.media-amazon.com/images/I/51gpeANv8rL._AC_UF1000,1000_QL80_.jpg", "https://greenverz.com/wp-content/uploads/2022/08/Peepal-1-2.png", "https://m.media-amazon.com/images/I/81wf+nVs17L.jpg", "https://greatdanecare.com/wp-content/uploads/2020/01/Great-Dane-head-shape-615x768.jpg"]
+            },
+             {
+                question: "Which decorative plant, often found in Indian homes and gardens, is known for its colorful foliage and is also called 'Money Plant' for its association with bringing good luck?",
+                 choices: ["Fern", "Rubber Plant", "Pothos", "Snake Plant"],
+                correctAnswer: "Pothos",
+                
+               images: ["https://nurserynisarga.in/wp-content/uploads/2024/02/2-1.webp", "https://cdn.apartmenttherapy.info/image/upload/v1665497422/gen-workflow/product-database/bloomscape_burgundy-rubber-tree_lg_stone.jpg", "https://pcfb.gumlet.io/images/articles/golden-pothos-in-hanging-basket.png?w=640&h=426&mode=crop&crop=smart&s=50e6ea2942716506fe3ebf1096ab111b", "https://cdn.dotpe.in/longtail/store-items/7985916/mbRe4EOg.jpeg"]
+            },
+             
+            
+           
+
+
+            
+        ];
+
+        // Shuffle function to randomize array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Call shuffleArray to randomize questions
+        shuffleArray(questions);
+
+        // Define other variables and elements
+        const questionElement = document.getElementById("question");
+        const choicesForm = document.getElementById("choices");
+        const submitBtn = document.getElementById("submitBtn");
+        const previousBtn = document.getElementById("previousBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const scoreElement = document.getElementById("score");
+        const timerElement = document.getElementById("timer");
+        const chartCanvas = document.getElementById("myChart");
+        const progressElement = document.getElementById("progress-bar");
+        const hintElement = document.getElementById("hint");
+        const skipBtn = document.getElementById("skipBtn");
+        const pauseBtn = document.getElementById("pauseBtn");
+        const modal = document.getElementById("modal");
+        const modalText = document.getElementById("modal-text");
+        const correctSound = document.getElementById("correctSound");
+        const wrongSound = document.getElementById("wrongSound");
+
+        let currentQuestion = 0;
+        let score = 0;
+        let unansweredCount = 0;
+        let timeLeft = 120; // 2 minutes in seconds
+        let timerInterval;
+        let progress = 0;
+
+        function displayQuestion() {
+            const question = questions[currentQuestion];
+            questionElement.textContent = question.question;
+
+            const choicesTable = document.createElement("table");
+
+            for (let i = 0; i < question.choices.length; i += 2) {
+                const choiceRow = document.createElement("tr");
+
+                for (let j = i; j < i + 2 && j < question.choices.length; j++) {
+                    const choice = question.choices[j];
+                    const imageSrc = question.images[j];
+
+                    const choiceCell = document.createElement("td");
+                    const choiceRadio = document.createElement("input");
+                    const choiceImage = document.createElement("img");
+                    const choiceCaption = document.createElement("div");
+
+                    choiceRadio.type = "radio";
+                    choiceRadio.name = "choices";
+                    choiceRadio.value = choice;
+                    choiceCell.appendChild(choiceRadio);
+
+                    choiceImage.src = imageSrc;
+                    choiceImage.alt = choice;
+                    choiceImage.classList.add("dog-image");
+                    choiceCell.appendChild(choiceImage);
+
+                    choiceCaption.textContent = choice;
+                    choiceCaption.classList.add("dog-name");
+                    choiceCell.appendChild(choiceCaption);
+
+                    choiceRow.appendChild(choiceCell);
+                }
+
+                choicesTable.appendChild(choiceRow);
+            }
+
+            choicesForm.innerHTML = "";
+            choicesForm.appendChild(choicesTable);
+
+            // Update progress bar
+            progressElement.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+            // Show or hide previous and next buttons based on current question
+            previousBtn.style.display = currentQuestion === 0 ? "none" : "inline-block";
+            nextBtn.style.display = currentQuestion === questions.length - 1 ? "none" : "inline-block";
+
+            // Hide submit button after answering
+            submitBtn.style.display = "inline-block";
+            if (currentQuestion === questions.length - 1) {
+                submitBtn.textContent = "Finish Quiz";
+            } else {
+                submitBtn.textContent = "Submit Answer";
+            }
+        }
+
+        
+        function checkAnswer() {
+    const selectedOption = document.querySelector("input[name='choices']:checked");
+    if (selectedOption) {
+        const choice = selectedOption.value;
+        const question = questions[currentQuestion];
+        const choiceButtons = document.querySelectorAll("input[name='choices']");
+        choiceButtons.forEach(button => {
+            button.disabled = true;
+        });
+        if (choice === question.correctAnswer) {
+            score++;
+            selectedOption.parentNode.classList.add("correct");
+            showModal(`Correct! ${question.correctAnswer} is the right answer.`);
+            correctSound.play();
+        } else {
+            unansweredCount++;
+            selectedOption.parentNode.classList.add("wrong");
+            const correctIndex = question.choices.indexOf(question.correctAnswer);
+            choiceButtons[correctIndex].parentNode.classList.add("correct");
+            showModal(`Sorry, the correct answer is: ${question.correctAnswer}.`);
+            wrongSound.play();
+        }
+    } else {
+        showModal("Please select an answer.");
+    }
+}
+
+
+        function showModal(message) {
+            modalText.textContent = message;
+            modal.style.display = "block";
+        }
+
+        function hideModal() {
+            modal.style.display = "none";
+        }
+
+        function showScore() {
+            clearInterval(timerInterval);
+            questionElement.textContent = "";
+            choicesForm.innerHTML = "";
+            submitBtn.style.display = "none";
+            previousBtn.style.display = "none";
+            nextBtn.style.display = "none";
+            skipBtn.style.display = "none";
+            pauseBtn.style.display = "none";
+            hintElement.style.display = "none";
+            scoreElement.textContent = `Your score: ${score} out of ${questions.length}`;
+            chartCanvas.style.display = "block"; // Display the chart
+            drawChart();
+        }
+
+        function drawChart() {
+            var xValues = ["Correct", "Wrong", "Unanswered"];
+            var yValues = [score, questions.length - score - unansweredCount, unansweredCount];
+            var barColors = [
+                "#87CEEB", // Correct - Skyblue
+                "#9370DB" ,// Wrong - Purple
+        
+        "#E6E6FA"  // Unanswered - Lavender
+        
+                
+            ];
+
+            new Chart("myChart", {
+                type: "doughnut",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Quiz Results"
+                    }
+                }
+            });
+        }
+
+        // Event listeners for previous and next buttons
+        previousBtn.addEventListener("click", () => {
+            currentQuestion--;
+            displayQuestion();
+        });
+
+        nextBtn.addEventListener("click", () => {
+            currentQuestion++;
+            displayQuestion();
+        });
+
+        // Event listener for submit button
+        submitBtn.addEventListener("click", () => {
+            checkAnswer();
+            if (currentQuestion === questions.length - 1) {
+                showScore();
+            } else {
+                currentQuestion++;
+                displayQuestion();
+            }
+        });
+
+        // Event listener for skip button
+        skipBtn.addEventListener("click", () => {
+            unansweredCount++;
+            if (currentQuestion === questions.length - 1) {
+                showScore();
+            } else {
+                currentQuestion++;
+                displayQuestion();
+            }
+        });
+
+        // Event listener for hint
+        hintElement.addEventListener("click", () => {
+            showModal("Here's a hint: Think about the characteristics of each breed!");
+        });
+
+        // Event listener for pause button
+        pauseBtn.addEventListener("click", () => {
+            if (pauseBtn.textContent === "Pause Timer") {
+                clearInterval(timerInterval);
+                pauseBtn.textContent = "Resume Timer";
+            } else {
+                startTimer();
+                pauseBtn.textContent = "Pause Timer";
+            }
+        });
+
+        // Close the modal when clicking on the close button or outside the modal
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal || event.target.classList.contains("close")) {
+                hideModal();
+            }
+        });
+
+        // Timer function
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                if (timeLeft === 0) {
+                    clearInterval(timerInterval);
+                    showScore();
+                }
+            }, 1000);
+        }
+
+        // Start the timer and display the first question
+        startTimer();
+        displayQuestion();
+        
+        // Update progress bar function
+// Global variable to track current progress
+let currentProgress = 0;
+
+// Update progress bar function
+function updateProgressBar() {
+    const progressBar = document.getElementById("progress-bar");
+    currentProgress += 1; // Increment current progress by 1
+    progressBar.style.width = `${currentProgress * 50}%`; // Assuming each step is 50%
+}
+
+// Example usage:
+// Call updateProgressBar whenever you want to progress
+updateProgressBar(); // This will progress the bar to 50%
+updateProgressBar(); // This will progress the bar to 100%
+
+
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
